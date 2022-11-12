@@ -25,7 +25,7 @@ cat << EOT >> .gitignore
 !/.gitignore
 EOT
 
-GITHUB_USER=$(git config user.name | cat)
+GITHUB_USER=$(git config user.name)
 git init
 git branch -M main
 git remote add origin https://github.com/$GITHUB_USER/$1.git
