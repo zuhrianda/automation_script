@@ -14,16 +14,15 @@ if [[ $# -eq 0 ]] ; then
     exit 1
 fi
 
+DIR_PATH=$(cd $(dirname ${BASH_SOURCE:-$0}) && pwd)
+TEMPLATE_DIR_PATH="${DIR_PATH}/template"
+
 echo "Creating a generic repository:" $1
 mkdir $1
 cd $1
 
 touch README.md
-touch .gitignore
-cat << EOT >> .gitignore
-.*
-!/.gitignore
-EOT
+cp $TEMPLATE_DIR_PATH/gitignore-basic .gitignore
 
 GITHUB_USER=$(git config user.name)
 git init
