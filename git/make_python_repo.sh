@@ -1,5 +1,5 @@
 #!/bin/bash
-# make a generic repo "repo_name" in local and push it to a blank remote repo 
+# make a python repo "repo_name" in local and push it to a blank remote repo 
 # with the same name in github
 #
 # command:
@@ -17,12 +17,16 @@ fi
 DIR_PATH=$(cd $(dirname ${BASH_SOURCE:-$0}) && pwd)
 TEMPLATE_DIR_PATH="${DIR_PATH}/template"
 
-echo "Creating a generic repository:" $1
+echo "Creating a python repository:" $1
 mkdir $1
 cd $1
 
 touch README.md
-cp $TEMPLATE_DIR_PATH/gitignore-basic .gitignore
+cp $TEMPLATE_DIR_PATH/gitignore-python .gitignore
+
+mkdir tests
+touch conftest.py
+cp $TEMPLATE_DIR_PATH/pytest-ini pytest.ini
 
 GITHUB_USER=$(git config user.name)
 git init
